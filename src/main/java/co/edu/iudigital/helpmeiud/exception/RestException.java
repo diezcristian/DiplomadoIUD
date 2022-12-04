@@ -1,6 +1,9 @@
 package co.edu.iudigital.helpmeiud.exception;
 
-public class RestException extends Exception {
+
+import java.io.Serializable;
+
+public class RestException extends Exception implements Serializable {
     private static final long serialVersionUID = 1L;
     private ErrorDto errorDto;
 

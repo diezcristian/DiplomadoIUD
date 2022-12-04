@@ -1,19 +1,16 @@
 package co.edu.iudigital.helpmeiud.service.impl;
 
+
 import co.edu.iudigital.helpmeiud.dto.DelitoDto;
 import co.edu.iudigital.helpmeiud.model.Delito;
 import co.edu.iudigital.helpmeiud.repository.IDelitoRepository;
 import co.edu.iudigital.helpmeiud.service.iface.IDelitoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-
 
 @Service
 public class DelitoServiceImpl implements IDelitoService {
@@ -24,6 +21,10 @@ public class DelitoServiceImpl implements IDelitoService {
         this.delitoRepository = delitoRepository;
     }
 
+
+    /**
+     * @return
+     */
     @Transactional(readOnly = true)
     @Override
     public List<DelitoDto> findAll() {
@@ -38,16 +39,27 @@ public class DelitoServiceImpl implements IDelitoService {
         ).collect(Collectors.toList());
     }
 
+    /**
+     * @param id
+     * @return
+     */
     @Override
     public DelitoDto findById(Long id) {
         return null;
     }
 
+    /**
+     * @param delitoDTO
+     * @return
+     */
     @Override
     public DelitoDto save(DelitoDto delitoDTO) {
         return null;
     }
 
+    /**
+     * @param id
+     */
     @Override
     public void delete(Long id) {
 

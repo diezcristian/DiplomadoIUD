@@ -1,24 +1,33 @@
 package co.edu.iudigital.helpmeiud.service.impl;
 
 import co.edu.iudigital.helpmeiud.dto.CasoDto;
-import co.edu.iudigital.helpmeiud.exception.BadRequestException;
-import co.edu.iudigital.helpmeiud.exception.ErrorDto;
-import co.edu.iudigital.helpmeiud.exception.RestException;
 import co.edu.iudigital.helpmeiud.model.Caso;
 import co.edu.iudigital.helpmeiud.repository.ICasoRepository;
+import co.edu.iudigital.helpmeiud.service.iface.ICasoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class CasoServiceImpl {
+
+@Service
+public class CasoServiceImpl implements ICasoService {
+
+    @Autowired
     private ICasoRepository casoRepository;
 
-    public List<CasoDto> findAll() throws RestException {
+
+
+    /**
+     * @return
+     */
+    @Transactional(readOnly = true)
+    @Override
+    public List<CasoDto> findAll() {
         List<Caso> casos = casoRepository.findAll();
+        // TODO: Refactorizar con mapeo
         List<CasoDto> casosDto = new ArrayList<>();
         casos.stream().forEach(c -> {
             CasoDto casoDto = new CasoDto();
@@ -38,26 +47,32 @@ public class CasoServiceImpl {
         return casosDto;
     }
 
-    public Caso save(Caso caso) throws RestException {
-        if(Objects.isNull(caso)) {
-            throw new BadRequestException(ErrorDto.getErrorDto(
-                    HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                    "Mala petición",
-                    HttpStatus.BAD_REQUEST.value())
-            );
-        }
-        return casoRepository.save(caso);
+    /**
+     * @param casoDTO
+     * @return
+     */
+    @Override
+    public CasoDto save(CasoDto casoDTO)  {
+
+        return null;
     }
 
-
-    public Boolean visible(Boolean visible, Long id) throws RestException {
-        return casoRepository.setVisible(visible, id);
+    /**
+     * @param visible
+     * @param id
+     * @return
+     */
+    @Override
+    public Boolean visible(Boolean visible, Long id) {
+        return null;
     }
 
-    @Transactional(readOnly = true)
-
-    public Caso findById(Long id) throws RestException {
-        return casoRepository.findById(id).get();
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public CasoDto findById(Long id) {
+        return null;
     }
-
 }
